@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScholarTutors</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.2em;
+            color: #2980b9;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            background-color: #27ae60;
+            color: white;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #229954;
+        }
+
+        #subjectSelection, #testPrepSelection {
+            margin-bottom: 20px;
+        }
+
+        select {
+            width: 300px;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        #studentInfoForm {
+            display: none;
+            background-color: #fff;
+            padding: 20px;
+            border: 2px solid #2980b9;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            text-align: left;
+            width: 350px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        input[type="text"], input[type="email"], input[type="tel"], select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button[type="submit"] {
+            background-color: #2980b9;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #2471a3;
+        }
+
+        #confirmationMessage {
+            display: none;
+            background-color: #fff;
+            padding: 20px;
+            border: 2px solid #2980b9;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 350px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Welcome to ScholarTutors</h1>
+        <p>Experts that suit your needs.</p>
+        <div id="subjectSelection">
+            <h2>Select Subjects:</h2>
+            <select id="subjects" name="subjects">
+                <option value="Math">Math</option>
+                <option value="Physics">Physics</option>
+                <option value="Chemistry">Chemistry</option>
+                <option value="English">English</option>
+                <option value="Biology">Biology</option>
+                <option value="Economics">Economics</option>
+                <option value="Business Studies">Business Studies</option>
+                <option value="French">French</option>
+                <option value="Spanish">Spanish</option>
+                <option value="Hindi">Hindi</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+        <div id="testPrepSelection">
+            <h2>Test Preparation:</h2>
+            <select id="testPrep" name="testPrep">
+                <option value="">None</option>
+                <option value="SAT">SAT</option>
+                <option value="ACT">ACT</option>
+                <option value="NEET">NEET</option>
+                <option value="JEE">JEE</option>
+            </select>
+        </div>
+        <button id="nextButton" onclick="showStudentInfoForm()">Next</button>
+        
+        <div id="studentInfoForm">
+            <h2>Student Information</h2>
+            <form id="studentFormContent">
+                <label for="studentName">Name:</label>
+                <input type="text" id="studentName" name="studentName" required><br>
+                <label for="studentEmail">Email:</label>
+                <input type="email" id="studentEmail" name="studentEmail" required><br>
+                <label for="studentNumber">Phone Number:</label>
+                <input type="tel" id="studentNumber" name="studentNumber" required><br>
+                <label for="syllabus">Syllabus:</label>
+                <select id="syllabus" name="syllabus">
+                    <option value="CBSE">CBSE</option>
+                    <option value="AP">AP</option>
+                    <option value="IB">IB</option>
+                    <option value="ICSE">ICSE</option>
+                    <option value="IGCSE">IGCSE</option>
+                    <option value="Other">Other</option>
+                </select><br>
+                <label for="gradeLevel">Grade Level:</label>
+                <select id="gradeLevel" name="gradeLevel" required>
+                    <option value="Kindergarten">Kindergarten</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="Other">Other</option>
+                </select><br>
+                <button type="submit">Submit</button>
+                <button type="button" onclick="goBack()">Back</button>
+            </form>
+        </div>
+
+        <div id="confirmationMessage">
+            <h2>Thank you for visiting ScholarTutors</h2>
+            <p>We will get in touch with you shortly!</p>
+        </div>
+    </div>
+
+    <script>
+        function showStudentInfoForm() {
+            document.getElementById('subjectSelection').style.display = 'none';
+            document.getElementById('testPrepSelection').style.display = 'none';
+            document.getElementById('nextButton').style.display = 'none';
+            document.getElementById('studentInfoForm').style.display = 'block';
+        }
+
+        function goBack() {
+            document.getElementById('subjectSelection').style.display = 'block';
+            document.getElementById('testPrepSelection').style.display = 'block';
+            document.getElementById('nextButton').style.display = 'block';
+            document.getElementById('studentInfoForm').style.display = 'none';
+        }
+
+        function showConfirmationMessage() {
+            document.getElementById('studentInfoForm').style.display = 'none';
+            document.getElementById('confirmationMessage').style.display = 'block';
+        }
+
+        document.getElementById('studentFormContent').onsubmit = function(event) {
+            event.preventDefault();
+            fetch('/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: document.getElementById('studentName').value,
+                    email: document.getElementById('studentEmail').value,
+                    phone: document.getElementById('studentNumber').value,
+                    syllabus: document.getElementById('syllabus').value,
+                    gradeLevel: document.getElementById('gradeLevel').value,
+                    subjects: document.getElementById('subjects').value,
+                    testPrep: document.getElementById('testPrep').value
+                })
+            }).then(response => response.json())
+            .then(data => {
+                showConfirmationMessage();  // Show the confirmation message
+            }).catch(error => console.error('Error:', error));
+        };
+    </script>
+</body>
+</html>
